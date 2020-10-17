@@ -39,6 +39,7 @@ export default {
     }),
     loginProcess() {
       this.$store.dispatch('login',this.user);
+      this.$router.push('/')
     },
   },
 };

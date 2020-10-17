@@ -14,30 +14,63 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <router-link to="/" class="nav-link" active-class="active" exact><a>Home</a></router-link>
-        <router-link v-if="!isAuth" to="/Login" class="nav-link" active-class="active" exact><a>Login</a></router-link>
-        <router-link v-if="!isAuth" to="/SignUp" class="nav-link" active-class="active" exact><a>Sign Up</a></router-link>
-        <router-link v-if="isAuth" to="/SavedData" class="nav-link" active-class="active" exact><a>Saved Data</a></router-link>
-        <button v-if="isAuth" class="float-right" @click="logout">LogOut</button>
-        {{name}}
+        <router-link to="/" class="nav-link" active-class="active" exact
+          ><a>Home</a></router-link
+        >
+        <router-link
+          v-if="!isAuth"
+          to="/Login"
+          class="nav-link"
+          active-class="active"
+          exact
+          ><a>Login</a></router-link
+        >
+        <router-link
+          v-if="!isAuth"
+          to="/SignUp"
+          class="nav-link"
+          active-class="active"
+          exact
+          ><a>Sign Up</a></router-link
+        >
+        <router-link
+          v-if="isAuth"
+          to="/SavedData"
+          class="nav-link"
+          active-class="active"
+          exact
+          ><a>Saved Data</a></router-link
+        >
+        <a
+          v-if="isAuth"
+          class="nav-link"
+          style="cursor: pointer"
+          active-class="active"
+          @click="logout"
+          >LogOut</a
+        >
+        
       </div>
     </div>
+    <form class="form-inline"  v-if="isAuth">
+      {{ "Welcome "+name }}
+    </form>
   </nav>
 </template>
 <script>
 export default {
-  computed:{
-    name(){
+  computed: {
+    name() {
       return this.$store.getters.getName;
     },
-    isAuth(){
-      return this.$store.getters.isAuth
-    }
+    isAuth() {
+      return this.$store.getters.isAuth;
+    },
   },
-  methods:{
-    logout(){
-      this.$store.dispatch('logout');
-    }
-  }
-}
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
+};
 </script>
